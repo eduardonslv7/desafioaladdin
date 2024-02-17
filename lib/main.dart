@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 
 void main() {runApp(MaterialApp(
@@ -14,18 +15,11 @@ class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text('Aladdin Tapetes', style: TextStyle(fontSize: 22)),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0A6D92),
-        elevation: 0,
-        toolbarHeight: 72,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(32),
+        title: const Text('Aladdin Tapetes'),
+        backgroundColor: Colors.amber
+        
         ),
-      ),
-    ),
       body: Container(
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(16.0),
@@ -58,16 +52,8 @@ class TelaSelecaoForma extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aladdin Tapetes', style: TextStyle(fontSize: 22)),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0A6D92),
-        elevation: 0,
-        toolbarHeight: 72,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(32),
-        ),
-      ),
-    ),
+        title: const Text('Aladdin Tapetes'),
+        backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -139,15 +125,9 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Aladdin Tapetes - ${widget.tipoTapete.formato}'),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0A6D92),
-        elevation: 0,
-        toolbarHeight: 72,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(32),
+        backgroundColor: Colors.amber
         ),
-      ),
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -227,6 +207,7 @@ class TelaOrcamento extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Aladdin Tapetes - Resultado'),
+        backgroundColor: Colors.amber
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -258,3 +239,22 @@ class TelaOrcamento extends StatelessWidget {
     );
   }
 }
+
+
+enum Shape { CIRCULO, TRIANGULO, RETANGULO }
+
+class CalculadoraArea {
+  double getAreaFromShape(Shape shape, double side1, double? side2) {
+    switch (shape) {
+      case Shape.CIRCULO:
+        return pow(side1 / 2, 2) * pi;
+      case Shape.TRIANGULO:
+        return (side1 * (side2 ?? 0)) / 2;
+      case Shape.RETANGULO:
+        return side1 * (side2 ?? 0);
+      default:
+        return 0;
+    }
+  }
+}
+
