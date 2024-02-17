@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:projeto_aladdin/main.dart';
+import 'package:projeto_aladdin/model/tapete.dart';
+import 'package:projeto_aladdin/service/tapete_service.dart';
 import 'package:projeto_aladdin/telas/tela_insercao_dimen.dart';
 
-class TelaSelecaoForma extends StatelessWidget {
+class TelaSelecaoForma extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => TelaSelecaoFormaState();
+}
+
+class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
+  final TapeteService service = TapeteService();
+  List<Tapete> tapetes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getTapetes();
+  }
+
+  void getTapetes() async {
+    final result = await service.getTapetes();
+    setState(() {
+      tapetes = result;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Aladdin Tapetes'),
-        backgroundColor: Colors.amber),
+          title: const Text('Aladdin Tapetes'), backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -19,10 +40,11 @@ class TelaSelecaoForma extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             SizedBox(height: 20),
-            for (var tipo in tiposTapete)
+            for (var tipo in tapetes)
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                title: Text('${tipo.formato} - R\$ ${tipo.valorM2.toStringAsFixed(2)}'),
+                title: Text(
+                    '${tipo.nome} - R\$ ${tipo.valor_m2.toStringAsFixed(2)}'),
                 leading: const Icon(Icons.double_arrow),
                 onTap: () {
                   Navigator.push(

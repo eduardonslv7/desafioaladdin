@@ -13,19 +13,3 @@ void main() {runApp(MaterialApp(
       )
     );
 }
-
-
-
-class TipoTapete {
-  final String formato;
-  final double valorM2;
-
-  TipoTapete(this.formato, this.valorM2);
-}
-
-
-final List<TipoTapete> tiposTapete = [
-  TipoTapete('Circulo', 1.4),
-  TipoTapete('Retangulo', 3.56),
-  TipoTapete('Triangulo', 9.16),
-];

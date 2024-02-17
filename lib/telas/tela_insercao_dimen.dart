@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_aladdin/calculate/shape_calculate.dart';
 import 'package:projeto_aladdin/main.dart';
+import 'package:projeto_aladdin/model/tapete.dart';
 import 'package:projeto_aladdin/telas/tela_orcamento.dart';
 
 class TelaInsercaoDimensoes extends StatefulWidget {
-  final TipoTapete tipoTapete;
+  final Tapete tipoTapete;
 
   TelaInsercaoDimensoes(this.tipoTapete);
 
@@ -28,7 +29,7 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aladdin Tapetes - ${widget.tipoTapete.formato}'),
+        title: Text('Aladdin Tapetes - ${widget.tipoTapete.nome}'),
         backgroundColor: Colors.amber
         ),
       
@@ -78,8 +79,8 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
                   if (_formKey.currentState!.validate()) {
                     double largura = double.parse(_larguraController.text);
                     double comprimento = double.parse(_comprimentoController.text);
-                    double area = CalculadoraArea().getAreaFromShape(widget.tipoTapete.formato, largura, comprimento);
-                    double valor = area * widget.tipoTapete.valorM2;
+                    double area = CalculadoraArea().getAreaFromShape(widget.tipoTapete.nome, largura, comprimento);
+                    double valor = area * widget.tipoTapete.valor_m2;
                     Navigator.push(
                       context,
                       MaterialPageRoute(
