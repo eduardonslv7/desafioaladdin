@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_aladdin/main.dart';
+import 'package:projeto_aladdin/telas/tela_orcamento.dart';
 
 class TelaInsercaoDimensoes extends StatefulWidget {
   final TipoTapete tipoTapete;
@@ -27,15 +28,9 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Aladdin Tapetes - ${widget.tipoTapete.formato}'),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0A6D92),
-        elevation: 0,
-        toolbarHeight: 72,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(32),
+        backgroundColor: Colors.amber
         ),
-      ),
-      ),
+      
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(

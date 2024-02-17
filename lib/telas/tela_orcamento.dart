@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class TelaOrcamento extends StatelessWidget {
@@ -11,6 +13,7 @@ class TelaOrcamento extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Aladdin Tapetes - Resultado'),
+        backgroundColor: Colors.amber
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

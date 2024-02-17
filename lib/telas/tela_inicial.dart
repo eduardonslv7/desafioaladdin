@@ -1,22 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_aladdin/main.dart';
+import 'package:projeto_aladdin/telas/tela_selecao_forma.dart';
 
 class TelaInicial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
       appBar: AppBar(
-        title: Text('Aladdin Tapetes', style: TextStyle(fontSize: 22)),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0A6D92),
-        elevation: 0,
-        toolbarHeight: 72,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(32),
+        title: const Text('Aladdin Tapetes'),
+        backgroundColor: Colors.amber
+        
         ),
-      ),
-    ),
       body: Container(
         margin: const EdgeInsets.all(8),
         padding: const EdgeInsets.all(16.0),
