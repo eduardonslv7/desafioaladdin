@@ -5,6 +5,7 @@ import 'package:projeto_aladdin/telas/tela_inicial.dart';
 
 
 void main() {runApp(MaterialApp(
+  debugShowCheckedModeBanner: false,
 	title: 'Navegação Básica',
 	 theme: ThemeData(
 	   primarySwatch: Colors.blue
