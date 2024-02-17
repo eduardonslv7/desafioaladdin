@@ -16,6 +16,7 @@ class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
   @override
   void initState() {
     super.initState();
+    isLoading = true;
     getTapetes();
   }
 
@@ -34,32 +35,33 @@ class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
           title: const Text('Aladdin Tapetes'), backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: isLoading ? Center(child: CircularProgressIndicator()) :
-         Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              'Formatos disponíveis e seus respectivos preços por metro quadrado:',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 20),
-            for (var tipo in tapetes)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                title: Text(
-                    '${tipo.nome} - R\$ ${tipo.valor_m2.toStringAsFixed(2)}'),
-                leading: const Icon(Icons.double_arrow),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => TelaInsercaoDimensoes(tipo),
+        child: isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Text(
+                    'Formatos disponíveis e seus respectivos preços por metro quadrado:',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(height: 20),
+                  for (var tipo in tapetes)
+                    ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      title: Text(
+                          '${tipo.nome} - R\$ ${tipo.valor_m2.toStringAsFixed(2)}'),
+                      leading: const Icon(Icons.double_arrow),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => TelaInsercaoDimensoes(tipo),
+                          ),
+                        );
+                      },
                     ),
-                  );
-                },
+                ],
               ),
-          ],
-        ),
       ),
     );
   }
