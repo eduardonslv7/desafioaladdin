@@ -27,12 +27,11 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
 
   @override
   Widget build(BuildContext context) {
+    bool isCircle = getShape(widget.tipoTapete.nome) == Shape.CIRCULO;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Aladdin Tapetes - ${widget.tipoTapete.nome}'),
-        backgroundColor: Colors.amber
-        ),
-      
+          title: Text('Aladdin Tapetes - ${widget.tipoTapete.nome}'),
+          backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -47,7 +46,7 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
               SizedBox(height: 20),
               TextFormField(
                 controller: _larguraController,
-                decoration: InputDecoration(labelText: 'Largura (m)'),
+                decoration: InputDecoration(labelText: isCircle ? 'Raio' : 'Largura (m)'),
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -59,27 +58,31 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
                   return null;
                 },
               ),
-              TextFormField(
-                controller: _comprimentoController,
-                decoration: InputDecoration(labelText: 'Comprimento (m)'),
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira o comprimento.';
-                  }
-                  if (value.contains(',')) {
-                    return 'Use "." (ponto) como separador decimal.';
-                  }
-                  return null;
-                },
-              ),
+              if (!isCircle)
+                TextFormField(
+                  controller: _comprimentoController,
+                  decoration: InputDecoration(labelText: 'Comprimento (m)'),
+                  keyboardType: TextInputType.numberWithOptions(decimal: true),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, insira o comprimento.';
+                    }
+                    if (value.contains(',')) {
+                      return 'Use "." (ponto) como separador decimal.';
+                    }
+                    return null;
+                  },
+                ),
               SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    double largura = double.parse(_larguraController.text);
-                    double comprimento = double.parse(_comprimentoController.text);
-                    double area = CalculadoraArea().getAreaFromShape(widget.tipoTapete.nome, largura, comprimento);
+                    double largura =
+                        double.tryParse(_larguraController.text) ?? 0;
+                    double comprimento =
+                        double.tryParse(_comprimentoController.text) ?? 0;
+                    double area = CalculadoraArea().getAreaFromShape(
+                        widget.tipoTapete.nome, largura, comprimento);
                     double valor = area * widget.tipoTapete.valor_m2;
                     Navigator.push(
                       context,

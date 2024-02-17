@@ -11,6 +11,7 @@ class TelaSelecaoForma extends StatefulWidget {
 class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
   final TapeteService service = TapeteService();
   List<Tapete> tapetes = [];
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -22,6 +23,7 @@ class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
     final result = await service.getTapetes();
     setState(() {
       tapetes = result;
+      isLoading = false;
     });
   }
 
@@ -32,7 +34,8 @@ class TelaSelecaoFormaState extends State<TelaSelecaoForma> {
           title: const Text('Aladdin Tapetes'), backgroundColor: Colors.amber),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: isLoading ? Center(child: CircularProgressIndicator()) :
+         Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text(

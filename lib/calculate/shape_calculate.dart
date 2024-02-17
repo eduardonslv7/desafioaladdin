@@ -1,14 +1,20 @@
 import 'dart:math';
 
+import 'package:diacritic/diacritic.dart';
+
 enum Shape { CIRCULO, TRIANGULO, RETANGULO }
+
+Shape getShape(String nome) {
+  return Shape.values.firstWhere(
+      (e) =>
+          e.name.toString().toLowerCase() ==
+          removeDiacritics(nome).toLowerCase(),
+      orElse: () => Shape.TRIANGULO);
+}
 
 class CalculadoraArea {
   double getAreaFromShape(String shape, double side1, double? side2) {
-    final selectedShape = Shape.values.firstWhere(
-      (e) =>
-      e.name.toString().toLowerCase() ==
-      shape.toLowerCase(),
-    );
+    final selectedShape = getShape(shape);
     switch (selectedShape) {
       case Shape.CIRCULO:
         return pow(side1 / 2, 2) * pi;

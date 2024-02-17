@@ -10,7 +10,7 @@ class TapeteService {
   Future<List<Tapete>> getTapetes() async {
     final result = await dio.get("precos");
     try {
-      final list = (result as List).map((e) => Tapete.fromJson(e)).toList();
+      final list = (result.data as List).map((e) => Tapete.fromJson(e)).toList();
 
       return list;
     } catch (e) {
