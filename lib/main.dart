@@ -25,30 +25,7 @@ class TipoTapete {
 
 
 final List<TipoTapete> tiposTapete = [
-  TipoTapete('Circular', 1.4),
-  TipoTapete('Retangular', 3.56),
-  TipoTapete('Triangular', 9.16),
+  TipoTapete('Circulo', 1.4),
+  TipoTapete('Retangulo', 3.56),
+  TipoTapete('Triangulo', 9.16),
 ];
-
-
-
-
-
-
-enum Shape { CIRCULO, TRIANGULO, RETANGULO }
-
-class CalculadoraArea {
-  double getAreaFromShape(Shape shape, double side1, double? side2) {
-    switch (shape) {
-      case Shape.CIRCULO:
-        return pow(side1 / 2, 2) * pi;
-      case Shape.TRIANGULO:
-        return (side1 * (side2 ?? 0)) / 2;
-      case Shape.RETANGULO:
-        return side1 * (side2 ?? 0);
-      default:
-        return 0;
-    }
-  }
-}
-

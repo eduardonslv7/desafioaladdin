@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_aladdin/calculate/shape_calculate.dart';
 import 'package:projeto_aladdin/main.dart';
 import 'package:projeto_aladdin/telas/tela_orcamento.dart';
 
@@ -77,7 +78,7 @@ class _TelaInsercaoDimensoesState extends State<TelaInsercaoDimensoes> {
                   if (_formKey.currentState!.validate()) {
                     double largura = double.parse(_larguraController.text);
                     double comprimento = double.parse(_comprimentoController.text);
-                    double area = largura * comprimento;
+                    double area = CalculadoraArea().getAreaFromShape(widget.tipoTapete.formato, largura, comprimento);
                     double valor = area * widget.tipoTapete.valorM2;
                     Navigator.push(
                       context,
